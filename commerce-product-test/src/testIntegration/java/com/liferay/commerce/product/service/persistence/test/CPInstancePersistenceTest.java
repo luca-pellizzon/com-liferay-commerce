@@ -194,6 +194,20 @@ public class CPInstancePersistenceTest {
 
 		newCPInstance.setMaxSubscriptionCycles(RandomTestUtil.nextLong());
 
+		newCPInstance.setDeliverySubscriptionEnabled(
+			RandomTestUtil.randomBoolean());
+
+		newCPInstance.setDeliverySubscriptionLength(RandomTestUtil.nextInt());
+
+		newCPInstance.setDeliverySubscriptionType(
+			RandomTestUtil.randomString());
+
+		newCPInstance.setDeliverySubscriptionTypeSettings(
+			RandomTestUtil.randomString());
+
+		newCPInstance.setDeliveryMaxSubscriptionCycles(
+			RandomTestUtil.nextLong());
+
 		newCPInstance.setStatus(RandomTestUtil.nextInt());
 
 		newCPInstance.setStatusByUserId(RandomTestUtil.nextLong());
@@ -289,6 +303,21 @@ public class CPInstancePersistenceTest {
 		Assert.assertEquals(
 			existingCPInstance.getMaxSubscriptionCycles(),
 			newCPInstance.getMaxSubscriptionCycles());
+		Assert.assertEquals(
+			existingCPInstance.isDeliverySubscriptionEnabled(),
+			newCPInstance.isDeliverySubscriptionEnabled());
+		Assert.assertEquals(
+			existingCPInstance.getDeliverySubscriptionLength(),
+			newCPInstance.getDeliverySubscriptionLength());
+		Assert.assertEquals(
+			existingCPInstance.getDeliverySubscriptionType(),
+			newCPInstance.getDeliverySubscriptionType());
+		Assert.assertEquals(
+			existingCPInstance.getDeliverySubscriptionTypeSettings(),
+			newCPInstance.getDeliverySubscriptionTypeSettings());
+		Assert.assertEquals(
+			existingCPInstance.getDeliveryMaxSubscriptionCycles(),
+			newCPInstance.getDeliveryMaxSubscriptionCycles());
 		Assert.assertEquals(
 			existingCPInstance.getStatus(), newCPInstance.getStatus());
 		Assert.assertEquals(
@@ -454,8 +483,12 @@ public class CPInstancePersistenceTest {
 			true, "expirationDate", true, "lastPublishDate", true,
 			"overrideSubscriptionInfo", true, "subscriptionEnabled", true,
 			"subscriptionLength", true, "subscriptionType", true,
-			"maxSubscriptionCycles", true, "status", true, "statusByUserId",
-			true, "statusByUserName", true, "statusDate", true);
+			"maxSubscriptionCycles", true, "deliverySubscriptionEnabled", true,
+			"deliverySubscriptionLength", true, "deliverySubscriptionType",
+			true, "deliverySubscriptionTypeSettings", true,
+			"deliveryMaxSubscriptionCycles", true, "status", true,
+			"statusByUserId", true, "statusByUserName", true, "statusDate",
+			true);
 	}
 
 	@Test
@@ -789,6 +822,18 @@ public class CPInstancePersistenceTest {
 		cpInstance.setSubscriptionTypeSettings(RandomTestUtil.randomString());
 
 		cpInstance.setMaxSubscriptionCycles(RandomTestUtil.nextLong());
+
+		cpInstance.setDeliverySubscriptionEnabled(
+			RandomTestUtil.randomBoolean());
+
+		cpInstance.setDeliverySubscriptionLength(RandomTestUtil.nextInt());
+
+		cpInstance.setDeliverySubscriptionType(RandomTestUtil.randomString());
+
+		cpInstance.setDeliverySubscriptionTypeSettings(
+			RandomTestUtil.randomString());
+
+		cpInstance.setDeliveryMaxSubscriptionCycles(RandomTestUtil.nextLong());
 
 		cpInstance.setStatus(RandomTestUtil.nextInt());
 

@@ -26,15 +26,50 @@ public class CPSubscriptionInfo {
 		UnicodeProperties subscriptionTypeSettingsProperties,
 		long maxSubscriptionCycleNumber) {
 
+		this(
+			subscriptionLength, subscriptionType,
+			subscriptionTypeSettingsProperties, maxSubscriptionCycleNumber, 0,
+			null, null, 0);
+	}
+
+	public CPSubscriptionInfo(
+		int subscriptionLength, String subscriptionType,
+		UnicodeProperties subscriptionTypeSettingsProperties,
+		long maxSubscriptionCycleNumber, int orderSubscriptionLength,
+		String orderSubscriptionType,
+		UnicodeProperties orderSubscriptionTypeSettingsProperties,
+		long orderMaxSubscriptionCycleNumber) {
+
 		_subscriptionLength = subscriptionLength;
 		_subscriptionType = subscriptionType;
 		_subscriptionTypeSettingsProperties =
 			subscriptionTypeSettingsProperties;
 		_maxSubscriptionCycles = maxSubscriptionCycleNumber;
+		_orderMaxSubscriptionCycles = orderMaxSubscriptionCycleNumber;
+		_orderSubscriptionLength = orderSubscriptionLength;
+		_orderSubscriptionType = orderSubscriptionType;
+		_orderSubscriptionTypeSettingsProperties =
+			orderSubscriptionTypeSettingsProperties;
 	}
 
 	public long getMaxSubscriptionCycles() {
 		return _maxSubscriptionCycles;
+	}
+
+	public long getOrderMaxSubscriptionCycles() {
+		return _orderMaxSubscriptionCycles;
+	}
+
+	public int getOrderSubscriptionLength() {
+		return _orderSubscriptionLength;
+	}
+
+	public String getOrderSubscriptionType() {
+		return _orderSubscriptionType;
+	}
+
+	public UnicodeProperties getOrderSubscriptionTypeSettingsProperties() {
+		return _orderSubscriptionTypeSettingsProperties;
 	}
 
 	public int getSubscriptionLength() {
@@ -50,6 +85,10 @@ public class CPSubscriptionInfo {
 	}
 
 	private final long _maxSubscriptionCycles;
+	private final long _orderMaxSubscriptionCycles;
+	private final int _orderSubscriptionLength;
+	private final String _orderSubscriptionType;
+	private final UnicodeProperties _orderSubscriptionTypeSettingsProperties;
 	private final int _subscriptionLength;
 	private final String _subscriptionType;
 	private final UnicodeProperties _subscriptionTypeSettingsProperties;

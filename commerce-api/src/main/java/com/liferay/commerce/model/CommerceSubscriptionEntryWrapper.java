@@ -80,6 +80,24 @@ public class CommerceSubscriptionEntryWrapper
 		attributes.put("subscriptionStatus", getSubscriptionStatus());
 		attributes.put("lastIterationDate", getLastIterationDate());
 		attributes.put("nextIterationDate", getNextIterationDate());
+		attributes.put(
+			"deliverySubscriptionEnabled", isDeliverySubscriptionEnabled());
+		attributes.put(
+			"deliverySubscriptionLength", getDeliverySubscriptionLength());
+		attributes.put(
+			"deliverySubscriptionType", getDeliverySubscriptionType());
+		attributes.put(
+			"deliverySubscriptionTypeSettings",
+			getDeliverySubscriptionTypeSettings());
+		attributes.put(
+			"deliveryMaxSubscriptionCycles",
+			getDeliveryMaxSubscriptionCycles());
+		attributes.put(
+			"deliverySubscriptionStatus", getDeliverySubscriptionStatus());
+		attributes.put(
+			"deliveryLastIterationDate", getDeliveryLastIterationDate());
+		attributes.put(
+			"deliveryNextIterationDate", getDeliveryNextIterationDate());
 		attributes.put("startDate", getStartDate());
 
 		return attributes;
@@ -206,6 +224,63 @@ public class CommerceSubscriptionEntryWrapper
 			setNextIterationDate(nextIterationDate);
 		}
 
+		Boolean deliverySubscriptionEnabled = (Boolean)attributes.get(
+			"deliverySubscriptionEnabled");
+
+		if (deliverySubscriptionEnabled != null) {
+			setDeliverySubscriptionEnabled(deliverySubscriptionEnabled);
+		}
+
+		Integer deliverySubscriptionLength = (Integer)attributes.get(
+			"deliverySubscriptionLength");
+
+		if (deliverySubscriptionLength != null) {
+			setDeliverySubscriptionLength(deliverySubscriptionLength);
+		}
+
+		String deliverySubscriptionType = (String)attributes.get(
+			"deliverySubscriptionType");
+
+		if (deliverySubscriptionType != null) {
+			setDeliverySubscriptionType(deliverySubscriptionType);
+		}
+
+		String deliverySubscriptionTypeSettings = (String)attributes.get(
+			"deliverySubscriptionTypeSettings");
+
+		if (deliverySubscriptionTypeSettings != null) {
+			setDeliverySubscriptionTypeSettings(
+				deliverySubscriptionTypeSettings);
+		}
+
+		Long deliveryMaxSubscriptionCycles = (Long)attributes.get(
+			"deliveryMaxSubscriptionCycles");
+
+		if (deliveryMaxSubscriptionCycles != null) {
+			setDeliveryMaxSubscriptionCycles(deliveryMaxSubscriptionCycles);
+		}
+
+		Integer deliverySubscriptionStatus = (Integer)attributes.get(
+			"deliverySubscriptionStatus");
+
+		if (deliverySubscriptionStatus != null) {
+			setDeliverySubscriptionStatus(deliverySubscriptionStatus);
+		}
+
+		Date deliveryLastIterationDate = (Date)attributes.get(
+			"deliveryLastIterationDate");
+
+		if (deliveryLastIterationDate != null) {
+			setDeliveryLastIterationDate(deliveryLastIterationDate);
+		}
+
+		Date deliveryNextIterationDate = (Date)attributes.get(
+			"deliveryNextIterationDate");
+
+		if (deliveryNextIterationDate != null) {
+			setDeliveryNextIterationDate(deliveryNextIterationDate);
+		}
+
 		Date startDate = (Date)attributes.get("startDate");
 
 		if (startDate != null) {
@@ -325,6 +400,86 @@ public class CommerceSubscriptionEntryWrapper
 	@Override
 	public long getCurrentCycle() {
 		return _commerceSubscriptionEntry.getCurrentCycle();
+	}
+
+	/**
+	 * Returns the delivery last iteration date of this commerce subscription entry.
+	 *
+	 * @return the delivery last iteration date of this commerce subscription entry
+	 */
+	@Override
+	public Date getDeliveryLastIterationDate() {
+		return _commerceSubscriptionEntry.getDeliveryLastIterationDate();
+	}
+
+	/**
+	 * Returns the delivery max subscription cycles of this commerce subscription entry.
+	 *
+	 * @return the delivery max subscription cycles of this commerce subscription entry
+	 */
+	@Override
+	public long getDeliveryMaxSubscriptionCycles() {
+		return _commerceSubscriptionEntry.getDeliveryMaxSubscriptionCycles();
+	}
+
+	/**
+	 * Returns the delivery next iteration date of this commerce subscription entry.
+	 *
+	 * @return the delivery next iteration date of this commerce subscription entry
+	 */
+	@Override
+	public Date getDeliveryNextIterationDate() {
+		return _commerceSubscriptionEntry.getDeliveryNextIterationDate();
+	}
+
+	/**
+	 * Returns the delivery subscription enabled of this commerce subscription entry.
+	 *
+	 * @return the delivery subscription enabled of this commerce subscription entry
+	 */
+	@Override
+	public boolean getDeliverySubscriptionEnabled() {
+		return _commerceSubscriptionEntry.getDeliverySubscriptionEnabled();
+	}
+
+	/**
+	 * Returns the delivery subscription length of this commerce subscription entry.
+	 *
+	 * @return the delivery subscription length of this commerce subscription entry
+	 */
+	@Override
+	public int getDeliverySubscriptionLength() {
+		return _commerceSubscriptionEntry.getDeliverySubscriptionLength();
+	}
+
+	/**
+	 * Returns the delivery subscription status of this commerce subscription entry.
+	 *
+	 * @return the delivery subscription status of this commerce subscription entry
+	 */
+	@Override
+	public int getDeliverySubscriptionStatus() {
+		return _commerceSubscriptionEntry.getDeliverySubscriptionStatus();
+	}
+
+	/**
+	 * Returns the delivery subscription type of this commerce subscription entry.
+	 *
+	 * @return the delivery subscription type of this commerce subscription entry
+	 */
+	@Override
+	public String getDeliverySubscriptionType() {
+		return _commerceSubscriptionEntry.getDeliverySubscriptionType();
+	}
+
+	/**
+	 * Returns the delivery subscription type settings of this commerce subscription entry.
+	 *
+	 * @return the delivery subscription type settings of this commerce subscription entry
+	 */
+	@Override
+	public String getDeliverySubscriptionTypeSettings() {
+		return _commerceSubscriptionEntry.getDeliverySubscriptionTypeSettings();
 	}
 
 	@Override
@@ -505,6 +660,16 @@ public class CommerceSubscriptionEntryWrapper
 		return _commerceSubscriptionEntry.isCachedModel();
 	}
 
+	/**
+	 * Returns <code>true</code> if this commerce subscription entry is delivery subscription enabled.
+	 *
+	 * @return <code>true</code> if this commerce subscription entry is delivery subscription enabled; <code>false</code> otherwise
+	 */
+	@Override
+	public boolean isDeliverySubscriptionEnabled() {
+		return _commerceSubscriptionEntry.isDeliverySubscriptionEnabled();
+	}
+
 	@Override
 	public boolean isEscapedModel() {
 		return _commerceSubscriptionEntry.isEscapedModel();
@@ -601,6 +766,100 @@ public class CommerceSubscriptionEntryWrapper
 	@Override
 	public void setCurrentCycle(long currentCycle) {
 		_commerceSubscriptionEntry.setCurrentCycle(currentCycle);
+	}
+
+	/**
+	 * Sets the delivery last iteration date of this commerce subscription entry.
+	 *
+	 * @param deliveryLastIterationDate the delivery last iteration date of this commerce subscription entry
+	 */
+	@Override
+	public void setDeliveryLastIterationDate(Date deliveryLastIterationDate) {
+		_commerceSubscriptionEntry.setDeliveryLastIterationDate(
+			deliveryLastIterationDate);
+	}
+
+	/**
+	 * Sets the delivery max subscription cycles of this commerce subscription entry.
+	 *
+	 * @param deliveryMaxSubscriptionCycles the delivery max subscription cycles of this commerce subscription entry
+	 */
+	@Override
+	public void setDeliveryMaxSubscriptionCycles(
+		long deliveryMaxSubscriptionCycles) {
+
+		_commerceSubscriptionEntry.setDeliveryMaxSubscriptionCycles(
+			deliveryMaxSubscriptionCycles);
+	}
+
+	/**
+	 * Sets the delivery next iteration date of this commerce subscription entry.
+	 *
+	 * @param deliveryNextIterationDate the delivery next iteration date of this commerce subscription entry
+	 */
+	@Override
+	public void setDeliveryNextIterationDate(Date deliveryNextIterationDate) {
+		_commerceSubscriptionEntry.setDeliveryNextIterationDate(
+			deliveryNextIterationDate);
+	}
+
+	/**
+	 * Sets whether this commerce subscription entry is delivery subscription enabled.
+	 *
+	 * @param deliverySubscriptionEnabled the delivery subscription enabled of this commerce subscription entry
+	 */
+	@Override
+	public void setDeliverySubscriptionEnabled(
+		boolean deliverySubscriptionEnabled) {
+
+		_commerceSubscriptionEntry.setDeliverySubscriptionEnabled(
+			deliverySubscriptionEnabled);
+	}
+
+	/**
+	 * Sets the delivery subscription length of this commerce subscription entry.
+	 *
+	 * @param deliverySubscriptionLength the delivery subscription length of this commerce subscription entry
+	 */
+	@Override
+	public void setDeliverySubscriptionLength(int deliverySubscriptionLength) {
+		_commerceSubscriptionEntry.setDeliverySubscriptionLength(
+			deliverySubscriptionLength);
+	}
+
+	/**
+	 * Sets the delivery subscription status of this commerce subscription entry.
+	 *
+	 * @param deliverySubscriptionStatus the delivery subscription status of this commerce subscription entry
+	 */
+	@Override
+	public void setDeliverySubscriptionStatus(int deliverySubscriptionStatus) {
+		_commerceSubscriptionEntry.setDeliverySubscriptionStatus(
+			deliverySubscriptionStatus);
+	}
+
+	/**
+	 * Sets the delivery subscription type of this commerce subscription entry.
+	 *
+	 * @param deliverySubscriptionType the delivery subscription type of this commerce subscription entry
+	 */
+	@Override
+	public void setDeliverySubscriptionType(String deliverySubscriptionType) {
+		_commerceSubscriptionEntry.setDeliverySubscriptionType(
+			deliverySubscriptionType);
+	}
+
+	/**
+	 * Sets the delivery subscription type settings of this commerce subscription entry.
+	 *
+	 * @param deliverySubscriptionTypeSettings the delivery subscription type settings of this commerce subscription entry
+	 */
+	@Override
+	public void setDeliverySubscriptionTypeSettings(
+		String deliverySubscriptionTypeSettings) {
+
+		_commerceSubscriptionEntry.setDeliverySubscriptionTypeSettings(
+			deliverySubscriptionTypeSettings);
 	}
 
 	@Override

@@ -4711,6 +4711,8 @@ public class CommerceSubscriptionEntryPersistenceImpl
 		Map<String, String> dbColumnNames = new HashMap<String, String>();
 
 		dbColumnNames.put("uuid", "uuid_");
+		dbColumnNames.put(
+			"deliverySubscriptionTypeSettings", "deliverySubTypeSettings");
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
@@ -6142,6 +6144,6 @@ public class CommerceSubscriptionEntryPersistenceImpl
 		CommerceSubscriptionEntryPersistenceImpl.class);
 
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(
-		new String[] {"uuid"});
+		new String[] {"uuid", "deliverySubscriptionTypeSettings"});
 
 }

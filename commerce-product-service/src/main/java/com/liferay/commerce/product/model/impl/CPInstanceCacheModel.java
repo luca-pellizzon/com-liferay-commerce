@@ -63,7 +63,7 @@ public class CPInstanceCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(75);
+		StringBundler sb = new StringBundler(85);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -131,6 +131,16 @@ public class CPInstanceCacheModel
 		sb.append(subscriptionTypeSettings);
 		sb.append(", maxSubscriptionCycles=");
 		sb.append(maxSubscriptionCycles);
+		sb.append(", deliverySubscriptionEnabled=");
+		sb.append(deliverySubscriptionEnabled);
+		sb.append(", deliverySubscriptionLength=");
+		sb.append(deliverySubscriptionLength);
+		sb.append(", deliverySubscriptionType=");
+		sb.append(deliverySubscriptionType);
+		sb.append(", deliverySubscriptionTypeSettings=");
+		sb.append(deliverySubscriptionTypeSettings);
+		sb.append(", deliveryMaxSubscriptionCycles=");
+		sb.append(deliveryMaxSubscriptionCycles);
 		sb.append(", status=");
 		sb.append(status);
 		sb.append(", statusByUserId=");
@@ -277,6 +287,29 @@ public class CPInstanceCacheModel
 		}
 
 		cpInstanceImpl.setMaxSubscriptionCycles(maxSubscriptionCycles);
+		cpInstanceImpl.setDeliverySubscriptionEnabled(
+			deliverySubscriptionEnabled);
+		cpInstanceImpl.setDeliverySubscriptionLength(
+			deliverySubscriptionLength);
+
+		if (deliverySubscriptionType == null) {
+			cpInstanceImpl.setDeliverySubscriptionType("");
+		}
+		else {
+			cpInstanceImpl.setDeliverySubscriptionType(
+				deliverySubscriptionType);
+		}
+
+		if (deliverySubscriptionTypeSettings == null) {
+			cpInstanceImpl.setDeliverySubscriptionTypeSettings("");
+		}
+		else {
+			cpInstanceImpl.setDeliverySubscriptionTypeSettings(
+				deliverySubscriptionTypeSettings);
+		}
+
+		cpInstanceImpl.setDeliveryMaxSubscriptionCycles(
+			deliveryMaxSubscriptionCycles);
 		cpInstanceImpl.setStatus(status);
 		cpInstanceImpl.setStatusByUserId(statusByUserId);
 
@@ -351,6 +384,14 @@ public class CPInstanceCacheModel
 		subscriptionTypeSettings = objectInput.readUTF();
 
 		maxSubscriptionCycles = objectInput.readLong();
+
+		deliverySubscriptionEnabled = objectInput.readBoolean();
+
+		deliverySubscriptionLength = objectInput.readInt();
+		deliverySubscriptionType = objectInput.readUTF();
+		deliverySubscriptionTypeSettings = objectInput.readUTF();
+
+		deliveryMaxSubscriptionCycles = objectInput.readLong();
 
 		status = objectInput.readInt();
 
@@ -470,6 +511,26 @@ public class CPInstanceCacheModel
 
 		objectOutput.writeLong(maxSubscriptionCycles);
 
+		objectOutput.writeBoolean(deliverySubscriptionEnabled);
+
+		objectOutput.writeInt(deliverySubscriptionLength);
+
+		if (deliverySubscriptionType == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(deliverySubscriptionType);
+		}
+
+		if (deliverySubscriptionTypeSettings == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(deliverySubscriptionTypeSettings);
+		}
+
+		objectOutput.writeLong(deliveryMaxSubscriptionCycles);
+
 		objectOutput.writeInt(status);
 
 		objectOutput.writeLong(statusByUserId);
@@ -517,6 +578,11 @@ public class CPInstanceCacheModel
 	public String subscriptionType;
 	public String subscriptionTypeSettings;
 	public long maxSubscriptionCycles;
+	public boolean deliverySubscriptionEnabled;
+	public int deliverySubscriptionLength;
+	public String deliverySubscriptionType;
+	public String deliverySubscriptionTypeSettings;
+	public long deliveryMaxSubscriptionCycles;
 	public int status;
 	public long statusByUserId;
 	public String statusByUserName;

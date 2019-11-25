@@ -247,6 +247,13 @@ public class CommerceSubscriptionEngineImpl
 			commercePaymentMethod.processRecurringPayment(
 				commercePaymentRequest);
 
+		/*
+		TODO
+		whats needed about ORDER subscription
+
+		- start process of order renewal (place new order each cycle)
+		 */
+
 		_commerceOrderLocalService.updatePaymentStatusAndTransactionId(
 			commerceOrder.getUserId(), commerceOrderId,
 			commercePaymentResult.getNewPaymentStatus(),

@@ -368,6 +368,130 @@ public interface CommerceSubscriptionEntryModel
 	public void setNextIterationDate(Date nextIterationDate);
 
 	/**
+	 * Returns the delivery subscription enabled of this commerce subscription entry.
+	 *
+	 * @return the delivery subscription enabled of this commerce subscription entry
+	 */
+	public boolean getDeliverySubscriptionEnabled();
+
+	/**
+	 * Returns <code>true</code> if this commerce subscription entry is delivery subscription enabled.
+	 *
+	 * @return <code>true</code> if this commerce subscription entry is delivery subscription enabled; <code>false</code> otherwise
+	 */
+	public boolean isDeliverySubscriptionEnabled();
+
+	/**
+	 * Sets whether this commerce subscription entry is delivery subscription enabled.
+	 *
+	 * @param deliverySubscriptionEnabled the delivery subscription enabled of this commerce subscription entry
+	 */
+	public void setDeliverySubscriptionEnabled(
+		boolean deliverySubscriptionEnabled);
+
+	/**
+	 * Returns the delivery subscription length of this commerce subscription entry.
+	 *
+	 * @return the delivery subscription length of this commerce subscription entry
+	 */
+	public int getDeliverySubscriptionLength();
+
+	/**
+	 * Sets the delivery subscription length of this commerce subscription entry.
+	 *
+	 * @param deliverySubscriptionLength the delivery subscription length of this commerce subscription entry
+	 */
+	public void setDeliverySubscriptionLength(int deliverySubscriptionLength);
+
+	/**
+	 * Returns the delivery subscription type of this commerce subscription entry.
+	 *
+	 * @return the delivery subscription type of this commerce subscription entry
+	 */
+	@AutoEscape
+	public String getDeliverySubscriptionType();
+
+	/**
+	 * Sets the delivery subscription type of this commerce subscription entry.
+	 *
+	 * @param deliverySubscriptionType the delivery subscription type of this commerce subscription entry
+	 */
+	public void setDeliverySubscriptionType(String deliverySubscriptionType);
+
+	/**
+	 * Returns the delivery subscription type settings of this commerce subscription entry.
+	 *
+	 * @return the delivery subscription type settings of this commerce subscription entry
+	 */
+	@AutoEscape
+	public String getDeliverySubscriptionTypeSettings();
+
+	/**
+	 * Sets the delivery subscription type settings of this commerce subscription entry.
+	 *
+	 * @param deliverySubscriptionTypeSettings the delivery subscription type settings of this commerce subscription entry
+	 */
+	public void setDeliverySubscriptionTypeSettings(
+		String deliverySubscriptionTypeSettings);
+
+	/**
+	 * Returns the delivery max subscription cycles of this commerce subscription entry.
+	 *
+	 * @return the delivery max subscription cycles of this commerce subscription entry
+	 */
+	public long getDeliveryMaxSubscriptionCycles();
+
+	/**
+	 * Sets the delivery max subscription cycles of this commerce subscription entry.
+	 *
+	 * @param deliveryMaxSubscriptionCycles the delivery max subscription cycles of this commerce subscription entry
+	 */
+	public void setDeliveryMaxSubscriptionCycles(
+		long deliveryMaxSubscriptionCycles);
+
+	/**
+	 * Returns the delivery subscription status of this commerce subscription entry.
+	 *
+	 * @return the delivery subscription status of this commerce subscription entry
+	 */
+	public int getDeliverySubscriptionStatus();
+
+	/**
+	 * Sets the delivery subscription status of this commerce subscription entry.
+	 *
+	 * @param deliverySubscriptionStatus the delivery subscription status of this commerce subscription entry
+	 */
+	public void setDeliverySubscriptionStatus(int deliverySubscriptionStatus);
+
+	/**
+	 * Returns the delivery last iteration date of this commerce subscription entry.
+	 *
+	 * @return the delivery last iteration date of this commerce subscription entry
+	 */
+	public Date getDeliveryLastIterationDate();
+
+	/**
+	 * Sets the delivery last iteration date of this commerce subscription entry.
+	 *
+	 * @param deliveryLastIterationDate the delivery last iteration date of this commerce subscription entry
+	 */
+	public void setDeliveryLastIterationDate(Date deliveryLastIterationDate);
+
+	/**
+	 * Returns the delivery next iteration date of this commerce subscription entry.
+	 *
+	 * @return the delivery next iteration date of this commerce subscription entry
+	 */
+	public Date getDeliveryNextIterationDate();
+
+	/**
+	 * Sets the delivery next iteration date of this commerce subscription entry.
+	 *
+	 * @param deliveryNextIterationDate the delivery next iteration date of this commerce subscription entry
+	 */
+	public void setDeliveryNextIterationDate(Date deliveryNextIterationDate);
+
+	/**
 	 * Returns the start date of this commerce subscription entry.
 	 *
 	 * @return the start date of this commerce subscription entry

@@ -88,7 +88,16 @@ public class CommerceSubscriptionEntryModelImpl
 		{"currentCycle", Types.BIGINT}, {"maxSubscriptionCycles", Types.BIGINT},
 		{"subscriptionStatus", Types.INTEGER},
 		{"lastIterationDate", Types.TIMESTAMP},
-		{"nextIterationDate", Types.TIMESTAMP}, {"startDate", Types.TIMESTAMP}
+		{"nextIterationDate", Types.TIMESTAMP},
+		{"deliverySubscriptionEnabled", Types.BOOLEAN},
+		{"deliverySubscriptionLength", Types.INTEGER},
+		{"deliverySubscriptionType", Types.VARCHAR},
+		{"deliverySubTypeSettings", Types.VARCHAR},
+		{"deliveryMaxSubscriptionCycles", Types.BIGINT},
+		{"deliverySubscriptionStatus", Types.INTEGER},
+		{"deliveryLastIterationDate", Types.TIMESTAMP},
+		{"deliveryNextIterationDate", Types.TIMESTAMP},
+		{"startDate", Types.TIMESTAMP}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -114,11 +123,19 @@ public class CommerceSubscriptionEntryModelImpl
 		TABLE_COLUMNS_MAP.put("subscriptionStatus", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("lastIterationDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("nextIterationDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("deliverySubscriptionEnabled", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("deliverySubscriptionLength", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("deliverySubscriptionType", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("deliverySubTypeSettings", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("deliveryMaxSubscriptionCycles", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("deliverySubscriptionStatus", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("deliveryLastIterationDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("deliveryNextIterationDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("startDate", Types.TIMESTAMP);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table CommerceSubscriptionEntry (uuid_ VARCHAR(75) null,commerceSubscriptionEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,CPInstanceUuid VARCHAR(75) null,CProductId LONG,commerceOrderItemId LONG,subscriptionLength INTEGER,subscriptionType VARCHAR(75) null,subscriptionTypeSettings TEXT null,currentCycle LONG,maxSubscriptionCycles LONG,subscriptionStatus INTEGER,lastIterationDate DATE null,nextIterationDate DATE null,startDate DATE null)";
+		"create table CommerceSubscriptionEntry (uuid_ VARCHAR(75) null,commerceSubscriptionEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,CPInstanceUuid VARCHAR(75) null,CProductId LONG,commerceOrderItemId LONG,subscriptionLength INTEGER,subscriptionType VARCHAR(75) null,subscriptionTypeSettings TEXT null,currentCycle LONG,maxSubscriptionCycles LONG,subscriptionStatus INTEGER,lastIterationDate DATE null,nextIterationDate DATE null,deliverySubscriptionEnabled BOOLEAN,deliverySubscriptionLength INTEGER,deliverySubscriptionType VARCHAR(75) null,deliverySubTypeSettings VARCHAR(75) null,deliveryMaxSubscriptionCycles LONG,deliverySubscriptionStatus INTEGER,deliveryLastIterationDate DATE null,deliveryNextIterationDate DATE null,startDate DATE null)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table CommerceSubscriptionEntry";
@@ -204,6 +221,22 @@ public class CommerceSubscriptionEntryModelImpl
 		model.setSubscriptionStatus(soapModel.getSubscriptionStatus());
 		model.setLastIterationDate(soapModel.getLastIterationDate());
 		model.setNextIterationDate(soapModel.getNextIterationDate());
+		model.setDeliverySubscriptionEnabled(
+			soapModel.isDeliverySubscriptionEnabled());
+		model.setDeliverySubscriptionLength(
+			soapModel.getDeliverySubscriptionLength());
+		model.setDeliverySubscriptionType(
+			soapModel.getDeliverySubscriptionType());
+		model.setDeliverySubscriptionTypeSettings(
+			soapModel.getDeliverySubscriptionTypeSettings());
+		model.setDeliveryMaxSubscriptionCycles(
+			soapModel.getDeliveryMaxSubscriptionCycles());
+		model.setDeliverySubscriptionStatus(
+			soapModel.getDeliverySubscriptionStatus());
+		model.setDeliveryLastIterationDate(
+			soapModel.getDeliveryLastIterationDate());
+		model.setDeliveryNextIterationDate(
+			soapModel.getDeliveryNextIterationDate());
 		model.setStartDate(soapModel.getStartDate());
 
 		return model;
@@ -862,6 +895,223 @@ public class CommerceSubscriptionEntryModelImpl
 
 			});
 		attributeGetterFunctions.put(
+			"deliverySubscriptionEnabled",
+			new Function<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public Object apply(
+					CommerceSubscriptionEntry commerceSubscriptionEntry) {
+
+					return commerceSubscriptionEntry.
+						getDeliverySubscriptionEnabled();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliverySubscriptionEnabled",
+			new BiConsumer<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public void accept(
+					CommerceSubscriptionEntry commerceSubscriptionEntry,
+					Object deliverySubscriptionEnabledObject) {
+
+					commerceSubscriptionEntry.setDeliverySubscriptionEnabled(
+						(Boolean)deliverySubscriptionEnabledObject);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deliverySubscriptionLength",
+			new Function<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public Object apply(
+					CommerceSubscriptionEntry commerceSubscriptionEntry) {
+
+					return commerceSubscriptionEntry.
+						getDeliverySubscriptionLength();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliverySubscriptionLength",
+			new BiConsumer<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public void accept(
+					CommerceSubscriptionEntry commerceSubscriptionEntry,
+					Object deliverySubscriptionLengthObject) {
+
+					commerceSubscriptionEntry.setDeliverySubscriptionLength(
+						(Integer)deliverySubscriptionLengthObject);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deliverySubscriptionType",
+			new Function<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public Object apply(
+					CommerceSubscriptionEntry commerceSubscriptionEntry) {
+
+					return commerceSubscriptionEntry.
+						getDeliverySubscriptionType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliverySubscriptionType",
+			new BiConsumer<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public void accept(
+					CommerceSubscriptionEntry commerceSubscriptionEntry,
+					Object deliverySubscriptionTypeObject) {
+
+					commerceSubscriptionEntry.setDeliverySubscriptionType(
+						(String)deliverySubscriptionTypeObject);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deliverySubscriptionTypeSettings",
+			new Function<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public Object apply(
+					CommerceSubscriptionEntry commerceSubscriptionEntry) {
+
+					return commerceSubscriptionEntry.
+						getDeliverySubscriptionTypeSettings();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliverySubscriptionTypeSettings",
+			new BiConsumer<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public void accept(
+					CommerceSubscriptionEntry commerceSubscriptionEntry,
+					Object deliverySubscriptionTypeSettingsObject) {
+
+					commerceSubscriptionEntry.
+						setDeliverySubscriptionTypeSettings(
+							(String)deliverySubscriptionTypeSettingsObject);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deliveryMaxSubscriptionCycles",
+			new Function<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public Object apply(
+					CommerceSubscriptionEntry commerceSubscriptionEntry) {
+
+					return commerceSubscriptionEntry.
+						getDeliveryMaxSubscriptionCycles();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliveryMaxSubscriptionCycles",
+			new BiConsumer<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public void accept(
+					CommerceSubscriptionEntry commerceSubscriptionEntry,
+					Object deliveryMaxSubscriptionCyclesObject) {
+
+					commerceSubscriptionEntry.setDeliveryMaxSubscriptionCycles(
+						(Long)deliveryMaxSubscriptionCyclesObject);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deliverySubscriptionStatus",
+			new Function<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public Object apply(
+					CommerceSubscriptionEntry commerceSubscriptionEntry) {
+
+					return commerceSubscriptionEntry.
+						getDeliverySubscriptionStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliverySubscriptionStatus",
+			new BiConsumer<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public void accept(
+					CommerceSubscriptionEntry commerceSubscriptionEntry,
+					Object deliverySubscriptionStatusObject) {
+
+					commerceSubscriptionEntry.setDeliverySubscriptionStatus(
+						(Integer)deliverySubscriptionStatusObject);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deliveryLastIterationDate",
+			new Function<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public Object apply(
+					CommerceSubscriptionEntry commerceSubscriptionEntry) {
+
+					return commerceSubscriptionEntry.
+						getDeliveryLastIterationDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliveryLastIterationDate",
+			new BiConsumer<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public void accept(
+					CommerceSubscriptionEntry commerceSubscriptionEntry,
+					Object deliveryLastIterationDateObject) {
+
+					commerceSubscriptionEntry.setDeliveryLastIterationDate(
+						(Date)deliveryLastIterationDateObject);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deliveryNextIterationDate",
+			new Function<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public Object apply(
+					CommerceSubscriptionEntry commerceSubscriptionEntry) {
+
+					return commerceSubscriptionEntry.
+						getDeliveryNextIterationDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliveryNextIterationDate",
+			new BiConsumer<CommerceSubscriptionEntry, Object>() {
+
+				@Override
+				public void accept(
+					CommerceSubscriptionEntry commerceSubscriptionEntry,
+					Object deliveryNextIterationDateObject) {
+
+					commerceSubscriptionEntry.setDeliveryNextIterationDate(
+						(Date)deliveryNextIterationDateObject);
+				}
+
+			});
+		attributeGetterFunctions.put(
 			"startDate",
 			new Function<CommerceSubscriptionEntry, Object>() {
 
@@ -1248,6 +1498,116 @@ public class CommerceSubscriptionEntryModelImpl
 
 	@JSON
 	@Override
+	public boolean getDeliverySubscriptionEnabled() {
+		return _deliverySubscriptionEnabled;
+	}
+
+	@JSON
+	@Override
+	public boolean isDeliverySubscriptionEnabled() {
+		return _deliverySubscriptionEnabled;
+	}
+
+	@Override
+	public void setDeliverySubscriptionEnabled(
+		boolean deliverySubscriptionEnabled) {
+
+		_deliverySubscriptionEnabled = deliverySubscriptionEnabled;
+	}
+
+	@JSON
+	@Override
+	public int getDeliverySubscriptionLength() {
+		return _deliverySubscriptionLength;
+	}
+
+	@Override
+	public void setDeliverySubscriptionLength(int deliverySubscriptionLength) {
+		_deliverySubscriptionLength = deliverySubscriptionLength;
+	}
+
+	@JSON
+	@Override
+	public String getDeliverySubscriptionType() {
+		if (_deliverySubscriptionType == null) {
+			return "";
+		}
+		else {
+			return _deliverySubscriptionType;
+		}
+	}
+
+	@Override
+	public void setDeliverySubscriptionType(String deliverySubscriptionType) {
+		_deliverySubscriptionType = deliverySubscriptionType;
+	}
+
+	@JSON
+	@Override
+	public String getDeliverySubscriptionTypeSettings() {
+		if (_deliverySubscriptionTypeSettings == null) {
+			return "";
+		}
+		else {
+			return _deliverySubscriptionTypeSettings;
+		}
+	}
+
+	@Override
+	public void setDeliverySubscriptionTypeSettings(
+		String deliverySubscriptionTypeSettings) {
+
+		_deliverySubscriptionTypeSettings = deliverySubscriptionTypeSettings;
+	}
+
+	@JSON
+	@Override
+	public long getDeliveryMaxSubscriptionCycles() {
+		return _deliveryMaxSubscriptionCycles;
+	}
+
+	@Override
+	public void setDeliveryMaxSubscriptionCycles(
+		long deliveryMaxSubscriptionCycles) {
+
+		_deliveryMaxSubscriptionCycles = deliveryMaxSubscriptionCycles;
+	}
+
+	@JSON
+	@Override
+	public int getDeliverySubscriptionStatus() {
+		return _deliverySubscriptionStatus;
+	}
+
+	@Override
+	public void setDeliverySubscriptionStatus(int deliverySubscriptionStatus) {
+		_deliverySubscriptionStatus = deliverySubscriptionStatus;
+	}
+
+	@JSON
+	@Override
+	public Date getDeliveryLastIterationDate() {
+		return _deliveryLastIterationDate;
+	}
+
+	@Override
+	public void setDeliveryLastIterationDate(Date deliveryLastIterationDate) {
+		_deliveryLastIterationDate = deliveryLastIterationDate;
+	}
+
+	@JSON
+	@Override
+	public Date getDeliveryNextIterationDate() {
+		return _deliveryNextIterationDate;
+	}
+
+	@Override
+	public void setDeliveryNextIterationDate(Date deliveryNextIterationDate) {
+		_deliveryNextIterationDate = deliveryNextIterationDate;
+	}
+
+	@JSON
+	@Override
 	public Date getStartDate() {
 		return _startDate;
 	}
@@ -1330,6 +1690,22 @@ public class CommerceSubscriptionEntryModelImpl
 			getLastIterationDate());
 		commerceSubscriptionEntryImpl.setNextIterationDate(
 			getNextIterationDate());
+		commerceSubscriptionEntryImpl.setDeliverySubscriptionEnabled(
+			isDeliverySubscriptionEnabled());
+		commerceSubscriptionEntryImpl.setDeliverySubscriptionLength(
+			getDeliverySubscriptionLength());
+		commerceSubscriptionEntryImpl.setDeliverySubscriptionType(
+			getDeliverySubscriptionType());
+		commerceSubscriptionEntryImpl.setDeliverySubscriptionTypeSettings(
+			getDeliverySubscriptionTypeSettings());
+		commerceSubscriptionEntryImpl.setDeliveryMaxSubscriptionCycles(
+			getDeliveryMaxSubscriptionCycles());
+		commerceSubscriptionEntryImpl.setDeliverySubscriptionStatus(
+			getDeliverySubscriptionStatus());
+		commerceSubscriptionEntryImpl.setDeliveryLastIterationDate(
+			getDeliveryLastIterationDate());
+		commerceSubscriptionEntryImpl.setDeliveryNextIterationDate(
+			getDeliveryNextIterationDate());
 		commerceSubscriptionEntryImpl.setStartDate(getStartDate());
 
 		commerceSubscriptionEntryImpl.resetOriginalValues();
@@ -1560,6 +1936,66 @@ public class CommerceSubscriptionEntryModelImpl
 				Long.MIN_VALUE;
 		}
 
+		commerceSubscriptionEntryCacheModel.deliverySubscriptionEnabled =
+			isDeliverySubscriptionEnabled();
+
+		commerceSubscriptionEntryCacheModel.deliverySubscriptionLength =
+			getDeliverySubscriptionLength();
+
+		commerceSubscriptionEntryCacheModel.deliverySubscriptionType =
+			getDeliverySubscriptionType();
+
+		String deliverySubscriptionType =
+			commerceSubscriptionEntryCacheModel.deliverySubscriptionType;
+
+		if ((deliverySubscriptionType != null) &&
+			(deliverySubscriptionType.length() == 0)) {
+
+			commerceSubscriptionEntryCacheModel.deliverySubscriptionType = null;
+		}
+
+		commerceSubscriptionEntryCacheModel.deliverySubscriptionTypeSettings =
+			getDeliverySubscriptionTypeSettings();
+
+		String deliverySubscriptionTypeSettings =
+			commerceSubscriptionEntryCacheModel.
+				deliverySubscriptionTypeSettings;
+
+		if ((deliverySubscriptionTypeSettings != null) &&
+			(deliverySubscriptionTypeSettings.length() == 0)) {
+
+			commerceSubscriptionEntryCacheModel.
+				deliverySubscriptionTypeSettings = null;
+		}
+
+		commerceSubscriptionEntryCacheModel.deliveryMaxSubscriptionCycles =
+			getDeliveryMaxSubscriptionCycles();
+
+		commerceSubscriptionEntryCacheModel.deliverySubscriptionStatus =
+			getDeliverySubscriptionStatus();
+
+		Date deliveryLastIterationDate = getDeliveryLastIterationDate();
+
+		if (deliveryLastIterationDate != null) {
+			commerceSubscriptionEntryCacheModel.deliveryLastIterationDate =
+				deliveryLastIterationDate.getTime();
+		}
+		else {
+			commerceSubscriptionEntryCacheModel.deliveryLastIterationDate =
+				Long.MIN_VALUE;
+		}
+
+		Date deliveryNextIterationDate = getDeliveryNextIterationDate();
+
+		if (deliveryNextIterationDate != null) {
+			commerceSubscriptionEntryCacheModel.deliveryNextIterationDate =
+				deliveryNextIterationDate.getTime();
+		}
+		else {
+			commerceSubscriptionEntryCacheModel.deliveryNextIterationDate =
+				Long.MIN_VALUE;
+		}
+
 		Date startDate = getStartDate();
 
 		if (startDate != null) {
@@ -1680,6 +2116,14 @@ public class CommerceSubscriptionEntryModelImpl
 	private boolean _setOriginalSubscriptionStatus;
 	private Date _lastIterationDate;
 	private Date _nextIterationDate;
+	private boolean _deliverySubscriptionEnabled;
+	private int _deliverySubscriptionLength;
+	private String _deliverySubscriptionType;
+	private String _deliverySubscriptionTypeSettings;
+	private long _deliveryMaxSubscriptionCycles;
+	private int _deliverySubscriptionStatus;
+	private Date _deliveryLastIterationDate;
+	private Date _deliveryNextIterationDate;
 	private Date _startDate;
 	private long _columnBitmask;
 	private CommerceSubscriptionEntry _escapedModel;

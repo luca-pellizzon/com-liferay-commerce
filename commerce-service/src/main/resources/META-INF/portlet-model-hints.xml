@@ -321,6 +321,14 @@
 		<field name="subscriptionStatus" type="int" />
 		<field name="lastIterationDate" type="Date" />
 		<field name="nextIterationDate" type="Date" />
+		<field name="deliverySubscriptionEnabled" type="boolean" />
+		<field name="deliverySubscriptionLength" type="int" />
+		<field name="deliverySubscriptionType" type="String" />
+		<field name="deliverySubscriptionTypeSettings" type="String" />
+		<field name="deliveryMaxSubscriptionCycles" type="long" />
+		<field name="deliverySubscriptionStatus" type="int" />
+		<field name="deliveryLastIterationDate" type="Date" />
+		<field name="deliveryNextIterationDate" type="Date" />
 		<field name="startDate" type="Date" />
 	</model>
 	<model name="com.liferay.commerce.model.CPDAvailabilityEstimate">

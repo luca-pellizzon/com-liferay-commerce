@@ -174,6 +174,30 @@ public class CommerceSubscriptionEntryPersistenceTest {
 		newCommerceSubscriptionEntry.setNextIterationDate(
 			RandomTestUtil.nextDate());
 
+		newCommerceSubscriptionEntry.setDeliverySubscriptionEnabled(
+			RandomTestUtil.randomBoolean());
+
+		newCommerceSubscriptionEntry.setDeliverySubscriptionLength(
+			RandomTestUtil.nextInt());
+
+		newCommerceSubscriptionEntry.setDeliverySubscriptionType(
+			RandomTestUtil.randomString());
+
+		newCommerceSubscriptionEntry.setDeliverySubscriptionTypeSettings(
+			RandomTestUtil.randomString());
+
+		newCommerceSubscriptionEntry.setDeliveryMaxSubscriptionCycles(
+			RandomTestUtil.nextLong());
+
+		newCommerceSubscriptionEntry.setDeliverySubscriptionStatus(
+			RandomTestUtil.nextInt());
+
+		newCommerceSubscriptionEntry.setDeliveryLastIterationDate(
+			RandomTestUtil.nextDate());
+
+		newCommerceSubscriptionEntry.setDeliveryNextIterationDate(
+			RandomTestUtil.nextDate());
+
 		newCommerceSubscriptionEntry.setStartDate(RandomTestUtil.nextDate());
 
 		_commerceSubscriptionEntries.add(
@@ -248,6 +272,38 @@ public class CommerceSubscriptionEntryPersistenceTest {
 				existingCommerceSubscriptionEntry.getNextIterationDate()),
 			Time.getShortTimestamp(
 				newCommerceSubscriptionEntry.getNextIterationDate()));
+		Assert.assertEquals(
+			existingCommerceSubscriptionEntry.isDeliverySubscriptionEnabled(),
+			newCommerceSubscriptionEntry.isDeliverySubscriptionEnabled());
+		Assert.assertEquals(
+			existingCommerceSubscriptionEntry.getDeliverySubscriptionLength(),
+			newCommerceSubscriptionEntry.getDeliverySubscriptionLength());
+		Assert.assertEquals(
+			existingCommerceSubscriptionEntry.getDeliverySubscriptionType(),
+			newCommerceSubscriptionEntry.getDeliverySubscriptionType());
+		Assert.assertEquals(
+			existingCommerceSubscriptionEntry.
+				getDeliverySubscriptionTypeSettings(),
+			newCommerceSubscriptionEntry.getDeliverySubscriptionTypeSettings());
+		Assert.assertEquals(
+			existingCommerceSubscriptionEntry.
+				getDeliveryMaxSubscriptionCycles(),
+			newCommerceSubscriptionEntry.getDeliveryMaxSubscriptionCycles());
+		Assert.assertEquals(
+			existingCommerceSubscriptionEntry.getDeliverySubscriptionStatus(),
+			newCommerceSubscriptionEntry.getDeliverySubscriptionStatus());
+		Assert.assertEquals(
+			Time.getShortTimestamp(
+				existingCommerceSubscriptionEntry.
+					getDeliveryLastIterationDate()),
+			Time.getShortTimestamp(
+				newCommerceSubscriptionEntry.getDeliveryLastIterationDate()));
+		Assert.assertEquals(
+			Time.getShortTimestamp(
+				existingCommerceSubscriptionEntry.
+					getDeliveryNextIterationDate()),
+			Time.getShortTimestamp(
+				newCommerceSubscriptionEntry.getDeliveryNextIterationDate()));
 		Assert.assertEquals(
 			Time.getShortTimestamp(
 				existingCommerceSubscriptionEntry.getStartDate()),
@@ -374,8 +430,13 @@ public class CommerceSubscriptionEntryPersistenceTest {
 			"commerceOrderItemId", true, "subscriptionLength", true,
 			"subscriptionType", true, "currentCycle", true,
 			"maxSubscriptionCycles", true, "subscriptionStatus", true,
-			"lastIterationDate", true, "nextIterationDate", true, "startDate",
-			true);
+			"lastIterationDate", true, "nextIterationDate", true,
+			"deliverySubscriptionEnabled", true, "deliverySubscriptionLength",
+			true, "deliverySubscriptionType", true,
+			"deliverySubscriptionTypeSettings", true,
+			"deliveryMaxSubscriptionCycles", true, "deliverySubscriptionStatus",
+			true, "deliveryLastIterationDate", true,
+			"deliveryNextIterationDate", true, "startDate", true);
 	}
 
 	@Test
@@ -722,6 +783,30 @@ public class CommerceSubscriptionEntryPersistenceTest {
 			RandomTestUtil.nextDate());
 
 		commerceSubscriptionEntry.setNextIterationDate(
+			RandomTestUtil.nextDate());
+
+		commerceSubscriptionEntry.setDeliverySubscriptionEnabled(
+			RandomTestUtil.randomBoolean());
+
+		commerceSubscriptionEntry.setDeliverySubscriptionLength(
+			RandomTestUtil.nextInt());
+
+		commerceSubscriptionEntry.setDeliverySubscriptionType(
+			RandomTestUtil.randomString());
+
+		commerceSubscriptionEntry.setDeliverySubscriptionTypeSettings(
+			RandomTestUtil.randomString());
+
+		commerceSubscriptionEntry.setDeliveryMaxSubscriptionCycles(
+			RandomTestUtil.nextLong());
+
+		commerceSubscriptionEntry.setDeliverySubscriptionStatus(
+			RandomTestUtil.nextInt());
+
+		commerceSubscriptionEntry.setDeliveryLastIterationDate(
+			RandomTestUtil.nextDate());
+
+		commerceSubscriptionEntry.setDeliveryNextIterationDate(
 			RandomTestUtil.nextDate());
 
 		commerceSubscriptionEntry.setStartDate(RandomTestUtil.nextDate());
