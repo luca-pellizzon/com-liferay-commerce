@@ -347,6 +347,18 @@ public class CPDefinitionImpl extends CPDefinitionBaseImpl {
 	}
 
 	@Override
+	public UnicodeProperties getOrderSubscriptionTypeSettingsProperties() {
+		if (_orderSubscriptionTypeSettingsProperties == null) {
+			_orderSubscriptionTypeSettingsProperties = new UnicodeProperties(true);
+
+			_orderSubscriptionTypeSettingsProperties.fastLoad(
+				getOrderSubscriptionTypeSettings());
+		}
+
+		return _orderSubscriptionTypeSettingsProperties;
+	}
+
+	@Override
 	public UnicodeProperties getSubscriptionTypeSettingsProperties() {
 		if (_subscriptionTypeSettingsProperties == null) {
 			_subscriptionTypeSettingsProperties = new UnicodeProperties(true);
@@ -444,6 +456,7 @@ public class CPDefinitionImpl extends CPDefinitionBaseImpl {
 	private Map<Locale, String> _nameMap;
 	private Map<Locale, String> _shortDescriptionMap;
 	private UnicodeProperties _subscriptionTypeSettingsProperties;
+	private UnicodeProperties _orderSubscriptionTypeSettingsProperties;
 	private Map<Locale, String> _urlTitleMap;
 
 }

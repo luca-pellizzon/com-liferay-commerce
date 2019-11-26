@@ -50,7 +50,10 @@ public class CPInstanceImpl extends CPInstanceBaseImpl {
 			return new CPSubscriptionInfo(
 				getSubscriptionLength(), getSubscriptionType(),
 				getSubscriptionTypeSettingsProperties(),
-				getMaxSubscriptionCycles());
+				getMaxSubscriptionCycles(), getOrderSubscriptionLength(),
+				getOrderSubscriptionType(),
+				getOrderSubscriptionTypeSettingsProperties(),
+				getOrderMaxSubscriptionCycles());
 		}
 		else if (!isOverrideSubscriptionInfo()) {
 			CPDefinition cpDefinition = getCPDefinition();
@@ -60,11 +63,27 @@ public class CPInstanceImpl extends CPInstanceBaseImpl {
 					cpDefinition.getSubscriptionLength(),
 					cpDefinition.getSubscriptionType(),
 					cpDefinition.getSubscriptionTypeSettingsProperties(),
-					cpDefinition.getMaxSubscriptionCycles());
+					cpDefinition.getMaxSubscriptionCycles(),
+					cpDefinition.getOrderSubscriptionLength(),
+					cpDefinition.getOrderSubscriptionType(),
+					cpDefinition.getOrderSubscriptionTypeSettingsProperties(),
+					cpDefinition.getOrderMaxSubscriptionCycles());
 			}
 		}
 
 		return null;
+	}
+
+	@Override
+	public UnicodeProperties getOrderSubscriptionTypeSettingsProperties(){
+		if (_orderSubscriptionTypeSettingsProperties == null) {
+			_orderSubscriptionTypeSettingsProperties = new UnicodeProperties(true);
+
+			_orderSubscriptionTypeSettingsProperties.fastLoad(
+				getOrderSubscriptionTypeSettings());
+		}
+
+		return _orderSubscriptionTypeSettingsProperties;
 	}
 
 	@Override
@@ -102,5 +121,6 @@ public class CPInstanceImpl extends CPInstanceBaseImpl {
 	}
 
 	private UnicodeProperties _subscriptionTypeSettingsProperties;
+	private UnicodeProperties _orderSubscriptionTypeSettingsProperties;
 
 }
