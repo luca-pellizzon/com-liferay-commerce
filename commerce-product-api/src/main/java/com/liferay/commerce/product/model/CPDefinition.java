@@ -100,7 +100,7 @@ public interface CPDefinition extends CPDefinitionModel, PersistedModel {
 	public java.util.Map<java.util.Locale, String> getNameMap();
 
 	public com.liferay.portal.kernel.util.UnicodeProperties
-		getOrderSubscriptionTypeSettingsProperties();
+	getDeliverySubscriptionTypeSettingsProperties();
 
 	public java.util.Map<java.util.Locale, String> getShortDescriptionMap();
 

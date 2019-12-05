@@ -308,7 +308,6 @@ create table CommerceSubscriptionEntry (
 	subscriptionStatus INTEGER,
 	lastIterationDate DATE null,
 	nextIterationDate DATE null,
-	deliverySubscriptionEnabled BOOLEAN,
 	deliverySubscriptionLength INTEGER,
 	deliverySubscriptionType VARCHAR(75) null,
 	deliverySubTypeSettings VARCHAR(75) null,

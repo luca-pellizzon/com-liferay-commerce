@@ -18,9 +18,11 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 
 /**
  * @author Alessio Antonio Rendina
+ * @author Luca Pellizzon
  */
 public class CPSubscriptionInfo {
 
+	@Deprecated
 	public CPSubscriptionInfo(
 		int subscriptionLength, String subscriptionType,
 		UnicodeProperties subscriptionTypeSettingsProperties,

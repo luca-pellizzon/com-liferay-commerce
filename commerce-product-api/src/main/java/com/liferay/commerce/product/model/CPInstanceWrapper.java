@@ -648,9 +648,9 @@ public class CPInstanceWrapper implements CPInstance, ModelWrapper<CPInstance> {
 
 	@Override
 	public com.liferay.portal.kernel.util.UnicodeProperties
-		getOrderSubscriptionTypeSettingsProperties() {
+	getDeliverySubscriptionTypeSettingsProperties() {
 
-		return _cpInstance.getOrderSubscriptionTypeSettingsProperties();
+		return _cpInstance.getDeliverySubscriptionTypeSettingsProperties();
 	}
 
 	/**

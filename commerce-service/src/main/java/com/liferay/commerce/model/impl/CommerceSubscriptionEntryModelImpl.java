@@ -89,7 +89,6 @@ public class CommerceSubscriptionEntryModelImpl
 		{"subscriptionStatus", Types.INTEGER},
 		{"lastIterationDate", Types.TIMESTAMP},
 		{"nextIterationDate", Types.TIMESTAMP},
-		{"deliverySubscriptionEnabled", Types.BOOLEAN},
 		{"deliverySubscriptionLength", Types.INTEGER},
 		{"deliverySubscriptionType", Types.VARCHAR},
 		{"deliverySubTypeSettings", Types.VARCHAR},
@@ -123,7 +122,6 @@ public class CommerceSubscriptionEntryModelImpl
 		TABLE_COLUMNS_MAP.put("subscriptionStatus", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("lastIterationDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("nextIterationDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("deliverySubscriptionEnabled", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("deliverySubscriptionLength", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("deliverySubscriptionType", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("deliverySubTypeSettings", Types.VARCHAR);
@@ -135,7 +133,7 @@ public class CommerceSubscriptionEntryModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table CommerceSubscriptionEntry (uuid_ VARCHAR(75) null,commerceSubscriptionEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,CPInstanceUuid VARCHAR(75) null,CProductId LONG,commerceOrderItemId LONG,subscriptionLength INTEGER,subscriptionType VARCHAR(75) null,subscriptionTypeSettings TEXT null,currentCycle LONG,maxSubscriptionCycles LONG,subscriptionStatus INTEGER,lastIterationDate DATE null,nextIterationDate DATE null,deliverySubscriptionEnabled BOOLEAN,deliverySubscriptionLength INTEGER,deliverySubscriptionType VARCHAR(75) null,deliverySubTypeSettings VARCHAR(75) null,deliveryMaxSubscriptionCycles LONG,deliverySubscriptionStatus INTEGER,deliveryLastIterationDate DATE null,deliveryNextIterationDate DATE null,startDate DATE null)";
+		"create table CommerceSubscriptionEntry (uuid_ VARCHAR(75) null,commerceSubscriptionEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,CPInstanceUuid VARCHAR(75) null,CProductId LONG,commerceOrderItemId LONG,subscriptionLength INTEGER,subscriptionType VARCHAR(75) null,subscriptionTypeSettings TEXT null,currentCycle LONG,maxSubscriptionCycles LONG,subscriptionStatus INTEGER,lastIterationDate DATE null,nextIterationDate DATE null,deliverySubscriptionLength INTEGER,deliverySubscriptionType VARCHAR(75) null,deliverySubTypeSettings VARCHAR(75) null,deliveryMaxSubscriptionCycles LONG,deliverySubscriptionStatus INTEGER,deliveryLastIterationDate DATE null,deliveryNextIterationDate DATE null,startDate DATE null)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table CommerceSubscriptionEntry";
@@ -221,8 +219,6 @@ public class CommerceSubscriptionEntryModelImpl
 		model.setSubscriptionStatus(soapModel.getSubscriptionStatus());
 		model.setLastIterationDate(soapModel.getLastIterationDate());
 		model.setNextIterationDate(soapModel.getNextIterationDate());
-		model.setDeliverySubscriptionEnabled(
-			soapModel.isDeliverySubscriptionEnabled());
 		model.setDeliverySubscriptionLength(
 			soapModel.getDeliverySubscriptionLength());
 		model.setDeliverySubscriptionType(
@@ -895,33 +891,6 @@ public class CommerceSubscriptionEntryModelImpl
 
 			});
 		attributeGetterFunctions.put(
-			"deliverySubscriptionEnabled",
-			new Function<CommerceSubscriptionEntry, Object>() {
-
-				@Override
-				public Object apply(
-					CommerceSubscriptionEntry commerceSubscriptionEntry) {
-
-					return commerceSubscriptionEntry.
-						getDeliverySubscriptionEnabled();
-				}
-
-			});
-		attributeSetterBiConsumers.put(
-			"deliverySubscriptionEnabled",
-			new BiConsumer<CommerceSubscriptionEntry, Object>() {
-
-				@Override
-				public void accept(
-					CommerceSubscriptionEntry commerceSubscriptionEntry,
-					Object deliverySubscriptionEnabledObject) {
-
-					commerceSubscriptionEntry.setDeliverySubscriptionEnabled(
-						(Boolean)deliverySubscriptionEnabledObject);
-				}
-
-			});
-		attributeGetterFunctions.put(
 			"deliverySubscriptionLength",
 			new Function<CommerceSubscriptionEntry, Object>() {
 
@@ -1498,25 +1467,6 @@ public class CommerceSubscriptionEntryModelImpl
 
 	@JSON
 	@Override
-	public boolean getDeliverySubscriptionEnabled() {
-		return _deliverySubscriptionEnabled;
-	}
-
-	@JSON
-	@Override
-	public boolean isDeliverySubscriptionEnabled() {
-		return _deliverySubscriptionEnabled;
-	}
-
-	@Override
-	public void setDeliverySubscriptionEnabled(
-		boolean deliverySubscriptionEnabled) {
-
-		_deliverySubscriptionEnabled = deliverySubscriptionEnabled;
-	}
-
-	@JSON
-	@Override
 	public int getDeliverySubscriptionLength() {
 		return _deliverySubscriptionLength;
 	}
@@ -1690,8 +1640,6 @@ public class CommerceSubscriptionEntryModelImpl
 			getLastIterationDate());
 		commerceSubscriptionEntryImpl.setNextIterationDate(
 			getNextIterationDate());
-		commerceSubscriptionEntryImpl.setDeliverySubscriptionEnabled(
-			isDeliverySubscriptionEnabled());
 		commerceSubscriptionEntryImpl.setDeliverySubscriptionLength(
 			getDeliverySubscriptionLength());
 		commerceSubscriptionEntryImpl.setDeliverySubscriptionType(
@@ -1936,9 +1884,6 @@ public class CommerceSubscriptionEntryModelImpl
 				Long.MIN_VALUE;
 		}
 
-		commerceSubscriptionEntryCacheModel.deliverySubscriptionEnabled =
-			isDeliverySubscriptionEnabled();
-
 		commerceSubscriptionEntryCacheModel.deliverySubscriptionLength =
 			getDeliverySubscriptionLength();
 
@@ -2116,7 +2061,6 @@ public class CommerceSubscriptionEntryModelImpl
 	private boolean _setOriginalSubscriptionStatus;
 	private Date _lastIterationDate;
 	private Date _nextIterationDate;
-	private boolean _deliverySubscriptionEnabled;
 	private int _deliverySubscriptionLength;
 	private String _deliverySubscriptionType;
 	private String _deliverySubscriptionTypeSettings;

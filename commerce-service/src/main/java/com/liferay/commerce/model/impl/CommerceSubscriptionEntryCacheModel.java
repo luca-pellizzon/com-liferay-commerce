@@ -66,7 +66,7 @@ public class CommerceSubscriptionEntryCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(57);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -106,8 +106,6 @@ public class CommerceSubscriptionEntryCacheModel
 		sb.append(lastIterationDate);
 		sb.append(", nextIterationDate=");
 		sb.append(nextIterationDate);
-		sb.append(", deliverySubscriptionEnabled=");
-		sb.append(deliverySubscriptionEnabled);
 		sb.append(", deliverySubscriptionLength=");
 		sb.append(deliverySubscriptionLength);
 		sb.append(", deliverySubscriptionType=");
@@ -217,8 +215,6 @@ public class CommerceSubscriptionEntryCacheModel
 				new Date(nextIterationDate));
 		}
 
-		commerceSubscriptionEntryImpl.setDeliverySubscriptionEnabled(
-			deliverySubscriptionEnabled);
 		commerceSubscriptionEntryImpl.setDeliverySubscriptionLength(
 			deliverySubscriptionLength);
 
@@ -304,8 +300,6 @@ public class CommerceSubscriptionEntryCacheModel
 		lastIterationDate = objectInput.readLong();
 		nextIterationDate = objectInput.readLong();
 
-		deliverySubscriptionEnabled = objectInput.readBoolean();
-
 		deliverySubscriptionLength = objectInput.readInt();
 		deliverySubscriptionType = objectInput.readUTF();
 		deliverySubscriptionTypeSettings = objectInput.readUTF();
@@ -380,8 +374,6 @@ public class CommerceSubscriptionEntryCacheModel
 		objectOutput.writeLong(lastIterationDate);
 		objectOutput.writeLong(nextIterationDate);
 
-		objectOutput.writeBoolean(deliverySubscriptionEnabled);
-
 		objectOutput.writeInt(deliverySubscriptionLength);
 
 		if (deliverySubscriptionType == null) {
@@ -425,7 +417,6 @@ public class CommerceSubscriptionEntryCacheModel
 	public int subscriptionStatus;
 	public long lastIterationDate;
 	public long nextIterationDate;
-	public boolean deliverySubscriptionEnabled;
 	public int deliverySubscriptionLength;
 	public String deliverySubscriptionType;
 	public String deliverySubscriptionTypeSettings;

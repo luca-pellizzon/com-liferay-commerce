@@ -18,6 +18,7 @@ import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.commerce.product.internal.upgrade.v1_10_1.CommerceSiteTypeUpgradeProcess;
 import com.liferay.commerce.product.internal.upgrade.v1_11_0.CPAttachmentFileEntryGroupUpgradeProcess;
 import com.liferay.commerce.product.internal.upgrade.v1_11_1.CPDisplayLayoutUpgradeProcess;
+import com.liferay.commerce.product.internal.upgrade.v1_12_0.SubscriptionUpgradeProcess;
 import com.liferay.commerce.product.internal.upgrade.v1_2_0.ProductSubscriptionUpgradeProcess;
 import com.liferay.commerce.product.internal.upgrade.v1_3_0.CPAttachmentFileEntryUpgradeProcess;
 import com.liferay.commerce.product.internal.upgrade.v1_3_0.CPDefinitionLinkUpgradeProcess;
@@ -127,6 +128,10 @@ public class CommerceProductUpgradeStepRegistrator
 			_SCHEMA_VERSION_1_11_0, _SCHEMA_VERSION_1_11_1,
 			new CPDisplayLayoutUpgradeProcess(_layoutLocalService));
 
+		registry.register(
+			_SCHEMA_VERSION_1_11_1, _SCHEMA_VERSION_1_12_0,
+			new SubscriptionUpgradeProcess());
+
 		if (_log.isInfoEnabled()) {
 			_log.info("COMMERCE PRODUCT UPGRADE STEP REGISTRATOR FINISHED");
 		}
@@ -159,6 +164,8 @@ public class CommerceProductUpgradeStepRegistrator
 	private static final String _SCHEMA_VERSION_1_11_0 = "1.11.0";
 
 	private static final String _SCHEMA_VERSION_1_11_1 = "1.11.1";
+
+	private static final String _SCHEMA_VERSION_1_12_0 = "1.12.0";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		CommerceProductUpgradeStepRegistrator.class);

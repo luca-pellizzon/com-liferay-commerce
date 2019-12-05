@@ -903,9 +903,9 @@ public class CPDefinitionWrapper
 
 	@Override
 	public com.liferay.portal.kernel.util.UnicodeProperties
-		getOrderSubscriptionTypeSettingsProperties() {
+	getDeliverySubscriptionTypeSettingsProperties() {
 
-		return _cpDefinition.getOrderSubscriptionTypeSettingsProperties();
+		return _cpDefinition.getDeliverySubscriptionTypeSettingsProperties();
 	}
 
 	/**

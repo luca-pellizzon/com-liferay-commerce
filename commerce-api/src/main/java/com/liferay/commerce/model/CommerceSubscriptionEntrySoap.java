@@ -55,8 +55,6 @@ public class CommerceSubscriptionEntrySoap implements Serializable {
 		soapModel.setSubscriptionStatus(model.getSubscriptionStatus());
 		soapModel.setLastIterationDate(model.getLastIterationDate());
 		soapModel.setNextIterationDate(model.getNextIterationDate());
-		soapModel.setDeliverySubscriptionEnabled(
-			model.isDeliverySubscriptionEnabled());
 		soapModel.setDeliverySubscriptionLength(
 			model.getDeliverySubscriptionLength());
 		soapModel.setDeliverySubscriptionType(
@@ -289,20 +287,6 @@ public class CommerceSubscriptionEntrySoap implements Serializable {
 		_nextIterationDate = nextIterationDate;
 	}
 
-	public boolean getDeliverySubscriptionEnabled() {
-		return _deliverySubscriptionEnabled;
-	}
-
-	public boolean isDeliverySubscriptionEnabled() {
-		return _deliverySubscriptionEnabled;
-	}
-
-	public void setDeliverySubscriptionEnabled(
-		boolean deliverySubscriptionEnabled) {
-
-		_deliverySubscriptionEnabled = deliverySubscriptionEnabled;
-	}
-
 	public int getDeliverySubscriptionLength() {
 		return _deliverySubscriptionLength;
 	}
@@ -390,7 +374,6 @@ public class CommerceSubscriptionEntrySoap implements Serializable {
 	private int _subscriptionStatus;
 	private Date _lastIterationDate;
 	private Date _nextIterationDate;
-	private boolean _deliverySubscriptionEnabled;
 	private int _deliverySubscriptionLength;
 	private String _deliverySubscriptionType;
 	private String _deliverySubscriptionTypeSettings;

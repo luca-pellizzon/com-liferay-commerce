@@ -81,8 +81,6 @@ public class CommerceSubscriptionEntryWrapper
 		attributes.put("lastIterationDate", getLastIterationDate());
 		attributes.put("nextIterationDate", getNextIterationDate());
 		attributes.put(
-			"deliverySubscriptionEnabled", isDeliverySubscriptionEnabled());
-		attributes.put(
 			"deliverySubscriptionLength", getDeliverySubscriptionLength());
 		attributes.put(
 			"deliverySubscriptionType", getDeliverySubscriptionType());
@@ -222,13 +220,6 @@ public class CommerceSubscriptionEntryWrapper
 
 		if (nextIterationDate != null) {
 			setNextIterationDate(nextIterationDate);
-		}
-
-		Boolean deliverySubscriptionEnabled = (Boolean)attributes.get(
-			"deliverySubscriptionEnabled");
-
-		if (deliverySubscriptionEnabled != null) {
-			setDeliverySubscriptionEnabled(deliverySubscriptionEnabled);
 		}
 
 		Integer deliverySubscriptionLength = (Integer)attributes.get(
@@ -430,16 +421,6 @@ public class CommerceSubscriptionEntryWrapper
 	@Override
 	public Date getDeliveryNextIterationDate() {
 		return _commerceSubscriptionEntry.getDeliveryNextIterationDate();
-	}
-
-	/**
-	 * Returns the delivery subscription enabled of this commerce subscription entry.
-	 *
-	 * @return the delivery subscription enabled of this commerce subscription entry
-	 */
-	@Override
-	public boolean getDeliverySubscriptionEnabled() {
-		return _commerceSubscriptionEntry.getDeliverySubscriptionEnabled();
 	}
 
 	/**
@@ -660,16 +641,6 @@ public class CommerceSubscriptionEntryWrapper
 		return _commerceSubscriptionEntry.isCachedModel();
 	}
 
-	/**
-	 * Returns <code>true</code> if this commerce subscription entry is delivery subscription enabled.
-	 *
-	 * @return <code>true</code> if this commerce subscription entry is delivery subscription enabled; <code>false</code> otherwise
-	 */
-	@Override
-	public boolean isDeliverySubscriptionEnabled() {
-		return _commerceSubscriptionEntry.isDeliverySubscriptionEnabled();
-	}
-
 	@Override
 	public boolean isEscapedModel() {
 		return _commerceSubscriptionEntry.isEscapedModel();
@@ -801,19 +772,6 @@ public class CommerceSubscriptionEntryWrapper
 	public void setDeliveryNextIterationDate(Date deliveryNextIterationDate) {
 		_commerceSubscriptionEntry.setDeliveryNextIterationDate(
 			deliveryNextIterationDate);
-	}
-
-	/**
-	 * Sets whether this commerce subscription entry is delivery subscription enabled.
-	 *
-	 * @param deliverySubscriptionEnabled the delivery subscription enabled of this commerce subscription entry
-	 */
-	@Override
-	public void setDeliverySubscriptionEnabled(
-		boolean deliverySubscriptionEnabled) {
-
-		_commerceSubscriptionEntry.setDeliverySubscriptionEnabled(
-			deliverySubscriptionEnabled);
 	}
 
 	/**

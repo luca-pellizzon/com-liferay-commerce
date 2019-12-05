@@ -68,7 +68,7 @@ public interface CPInstance extends CPInstanceModel, PersistedModel {
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.util.UnicodeProperties
-		getOrderSubscriptionTypeSettingsProperties();
+	getDeliverySubscriptionTypeSettingsProperties();
 
 	public com.liferay.portal.kernel.util.UnicodeProperties
 		getSubscriptionTypeSettingsProperties();

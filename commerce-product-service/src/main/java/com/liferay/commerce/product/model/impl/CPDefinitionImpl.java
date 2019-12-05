@@ -59,6 +59,7 @@ import java.util.TreeSet;
  * @author Marco Leo
  * @author Andrea Di Giorgi
  * @author Alessio Antonio Rendina
+ * @author Luca Pellizzon
  */
 public class CPDefinitionImpl extends CPDefinitionBaseImpl {
 
@@ -251,6 +252,19 @@ public class CPDefinitionImpl extends CPDefinitionBaseImpl {
 	}
 
 	@Override
+	public UnicodeProperties getDeliverySubscriptionTypeSettingsProperties() {
+		if (_orderSubscriptionTypeSettingsProperties == null) {
+			_orderSubscriptionTypeSettingsProperties = new UnicodeProperties(
+				true);
+
+			_orderSubscriptionTypeSettingsProperties.fastLoad(
+				getDeliverySubscriptionTypeSettings());
+		}
+
+		return _orderSubscriptionTypeSettingsProperties;
+	}
+
+	@Override
 	public Map<Locale, String> getDescriptionMap() {
 		if (_descriptionMap != null) {
 			return _descriptionMap;
@@ -344,18 +358,6 @@ public class CPDefinitionImpl extends CPDefinitionBaseImpl {
 				getCPDefinitionId());
 
 		return _shortDescriptionMap;
-	}
-
-	@Override
-	public UnicodeProperties getOrderSubscriptionTypeSettingsProperties() {
-		if (_orderSubscriptionTypeSettingsProperties == null) {
-			_orderSubscriptionTypeSettingsProperties = new UnicodeProperties(true);
-
-			_orderSubscriptionTypeSettingsProperties.fastLoad(
-				getOrderSubscriptionTypeSettings());
-		}
-
-		return _orderSubscriptionTypeSettingsProperties;
 	}
 
 	@Override
@@ -454,9 +456,9 @@ public class CPDefinitionImpl extends CPDefinitionBaseImpl {
 	private Map<Locale, String> _metaKeywordsMap;
 	private Map<Locale, String> _metaTitleMap;
 	private Map<Locale, String> _nameMap;
+	private UnicodeProperties _orderSubscriptionTypeSettingsProperties;
 	private Map<Locale, String> _shortDescriptionMap;
 	private UnicodeProperties _subscriptionTypeSettingsProperties;
-	private UnicodeProperties _orderSubscriptionTypeSettingsProperties;
 	private Map<Locale, String> _urlTitleMap;
 
 }

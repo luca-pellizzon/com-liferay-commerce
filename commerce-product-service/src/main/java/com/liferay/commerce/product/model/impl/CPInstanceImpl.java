@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
  * @author Marco Leo
  * @author Andrea Di Giorgi
  * @author Alessio Antonio Rendina
+ * @author Luca Pellizzon
  */
 public class CPInstanceImpl extends CPInstanceBaseImpl {
 
@@ -50,10 +51,10 @@ public class CPInstanceImpl extends CPInstanceBaseImpl {
 			return new CPSubscriptionInfo(
 				getSubscriptionLength(), getSubscriptionType(),
 				getSubscriptionTypeSettingsProperties(),
-				getMaxSubscriptionCycles(), getOrderSubscriptionLength(),
-				getOrderSubscriptionType(),
-				getOrderSubscriptionTypeSettingsProperties(),
-				getOrderMaxSubscriptionCycles());
+				getMaxSubscriptionCycles(), getDeliverySubscriptionLength(),
+				getDeliverySubscriptionType(),
+				getDeliverySubscriptionTypeSettingsProperties(),
+				getDeliveryMaxSubscriptionCycles());
 		}
 		else if (!isOverrideSubscriptionInfo()) {
 			CPDefinition cpDefinition = getCPDefinition();
@@ -64,10 +65,11 @@ public class CPInstanceImpl extends CPInstanceBaseImpl {
 					cpDefinition.getSubscriptionType(),
 					cpDefinition.getSubscriptionTypeSettingsProperties(),
 					cpDefinition.getMaxSubscriptionCycles(),
-					cpDefinition.getOrderSubscriptionLength(),
-					cpDefinition.getOrderSubscriptionType(),
-					cpDefinition.getOrderSubscriptionTypeSettingsProperties(),
-					cpDefinition.getOrderMaxSubscriptionCycles());
+					cpDefinition.getDeliverySubscriptionLength(),
+					cpDefinition.getDeliverySubscriptionType(),
+					cpDefinition.
+						getDeliverySubscriptionTypeSettingsProperties(),
+					cpDefinition.getDeliveryMaxSubscriptionCycles());
 			}
 		}
 
@@ -75,12 +77,13 @@ public class CPInstanceImpl extends CPInstanceBaseImpl {
 	}
 
 	@Override
-	public UnicodeProperties getOrderSubscriptionTypeSettingsProperties(){
+	public UnicodeProperties getDeliverySubscriptionTypeSettingsProperties() {
 		if (_orderSubscriptionTypeSettingsProperties == null) {
-			_orderSubscriptionTypeSettingsProperties = new UnicodeProperties(true);
+			_orderSubscriptionTypeSettingsProperties = new UnicodeProperties(
+				true);
 
 			_orderSubscriptionTypeSettingsProperties.fastLoad(
-				getOrderSubscriptionTypeSettings());
+				getDeliverySubscriptionTypeSettings());
 		}
 
 		return _orderSubscriptionTypeSettingsProperties;
@@ -120,7 +123,7 @@ public class CPInstanceImpl extends CPInstanceBaseImpl {
 			_subscriptionTypeSettingsProperties.toString());
 	}
 
-	private UnicodeProperties _subscriptionTypeSettingsProperties;
 	private UnicodeProperties _orderSubscriptionTypeSettingsProperties;
+	private UnicodeProperties _subscriptionTypeSettingsProperties;
 
 }

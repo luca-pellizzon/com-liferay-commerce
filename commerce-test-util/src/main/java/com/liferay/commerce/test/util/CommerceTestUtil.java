@@ -21,6 +21,7 @@ import com.liferay.commerce.context.CommerceContext;
 import com.liferay.commerce.currency.model.CommerceCurrency;
 import com.liferay.commerce.currency.test.util.CommerceCurrencyTestUtil;
 import com.liferay.commerce.inventory.model.CommerceInventoryWarehouse;
+import com.liferay.commerce.inventory.service.CommerceInventoryWarehouseLocalServiceUtil;
 import com.liferay.commerce.model.CPDefinitionInventory;
 import com.liferay.commerce.model.CommerceAddress;
 import com.liferay.commerce.model.CommerceCountry;
@@ -286,53 +287,67 @@ public class CommerceTestUtil {
 		CommerceInventoryWarehouse commerceInventoryWarehouse =
 			CommerceInventoryTestUtil.addCommerceInventoryWarehouse();
 
-		CommerceChannel commerceChannel =
-			CommerceChannelLocalServiceUtil.getCommerceChannelByOrderGroupId(
-				commerceOrder.getGroupId());
+		_setUpOrder(
+			commerceOrder, userId, groupId, cpInstance,
+			commerceInventoryWarehouse);
 
-		addWarehouseCommerceChannelRel(
-			commerceInventoryWarehouse.getCommerceInventoryWarehouseId(),
-			commerceChannel.getCommerceChannelId());
+		return CommerceOrderLocalServiceUtil.updateCommerceOrder(commerceOrder);
+	}
 
-		CommerceInventoryTestUtil.addCommerceInventoryWarehouseItem(
-			userId, commerceInventoryWarehouse, cpInstance.getSku(), 10);
+	public static CommerceOrder addCheckoutDetailsToUserOrder(
+			CommerceOrder commerceOrder, long userId, long cpInstanceId,
+			boolean paymentSubscription, boolean deliverySubscription,
+			long commerceInventoryWarehouseId)
+		throws Exception {
 
-		addCommerceOrderItem(
-			commerceOrder.getCommerceOrderId(), cpInstance.getCPInstanceId(),
-			4);
+		long groupId = commerceOrder.getGroupId();
 
-		CommerceAddress billingCommerceAddress = addUserCommerceAddress(
-			groupId, userId);
-		CommerceAddress shippingCommerceAddress = addUserCommerceAddress(
-			groupId, userId);
+		CPInstance cpInstance;
 
-		commerceOrder.setBillingAddressId(
-			billingCommerceAddress.getCommerceAddressId());
-		commerceOrder.setShippingAddressId(
-			shippingCommerceAddress.getCommerceAddressId());
+		if (cpInstanceId == 0) {
+			cpInstance = CPTestUtil.addCPInstance(groupId);
+		}
+		else {
+			cpInstance = CPInstanceLocalServiceUtil.getCPInstance(cpInstanceId);
+		}
 
-		CommercePaymentMethodGroupRel commercePaymentMethodGroupRel =
-			addCommercePaymentMethodGroupRel(
-				commerceOrder.getCompanyId(), groupId, userId,
-				commerceChannel.getSiteGroupId());
+		BigDecimal price = BigDecimal.valueOf(RandomTestUtil.randomDouble());
 
-		commerceOrder.setCommercePaymentMethodKey(
-			commercePaymentMethodGroupRel.getEngineKey());
+		cpInstance.setPrice(price);
 
-		CommerceShippingMethod commerceShippingMethod =
-			addCommerceShippingMethod(groupId);
+		if (paymentSubscription) {
+			cpInstance.setOverrideSubscriptionInfo(true);
+			cpInstance.setSubscriptionEnabled(true);
+			cpInstance.setSubscriptionLength(1);
+			cpInstance.setSubscriptionType(CPConstants.DAILY_SUBSCRIPTION_TYPE);
+			cpInstance.setMaxSubscriptionCycles(2);
+		}
 
-		commerceOrder.setCommerceShippingMethodId(
-			commerceShippingMethod.getCommerceShippingMethodId());
+		if (deliverySubscription) {
+			cpInstance.setDeliverySubscriptionEnabled(true);
+			cpInstance.setDeliverySubscriptionLength(1);
+			cpInstance.setDeliverySubscriptionType(
+				CPConstants.DAILY_SUBSCRIPTION_TYPE);
+			cpInstance.setDeliveryMaxSubscriptionCycles(2);
+		}
 
-		CommerceShippingFixedOption commerceShippingFixedOption =
-			addCommerceShippingFixedOption(commerceShippingMethod);
+		CPInstanceLocalServiceUtil.updateCPInstance(cpInstance);
 
-		commerceOrder.setShippingOptionName(
-			commerceShippingFixedOption.getName());
+		CommerceInventoryWarehouse commerceInventoryWarehouse;
 
-		commerceOrder.setShippingAmount(
-			commerceShippingFixedOption.getAmount());
+		if (commerceInventoryWarehouseId == 0) {
+			commerceInventoryWarehouse =
+				CommerceInventoryTestUtil.addCommerceInventoryWarehouse();
+		}
+		else {
+			commerceInventoryWarehouse =
+				CommerceInventoryWarehouseLocalServiceUtil.
+					getCommerceInventoryWarehouse(commerceInventoryWarehouseId);
+		}
+
+		_setUpOrder(
+			commerceOrder, userId, groupId, cpInstance,
+			commerceInventoryWarehouse);
 
 		return CommerceOrderLocalServiceUtil.updateCommerceOrder(commerceOrder);
 	}
@@ -613,6 +628,61 @@ public class CommerceTestUtil {
 		}
 
 		return commerceCountry;
+	}
+
+	private static void _setUpOrder(
+			CommerceOrder commerceOrder, long userId, long groupId,
+			CPInstance cpInstance,
+			CommerceInventoryWarehouse commerceInventoryWarehouse)
+		throws Exception {
+
+		CommerceChannel commerceChannel =
+			CommerceChannelLocalServiceUtil.getCommerceChannelByOrderGroupId(
+				commerceOrder.getGroupId());
+
+		addWarehouseCommerceChannelRel(
+			commerceInventoryWarehouse.getCommerceInventoryWarehouseId(),
+			commerceChannel.getCommerceChannelId());
+
+		CommerceInventoryTestUtil.addCommerceInventoryWarehouseItem(
+			userId, commerceInventoryWarehouse, cpInstance.getSku(), 10);
+
+		addCommerceOrderItem(
+			commerceOrder.getCommerceOrderId(), cpInstance.getCPInstanceId(),
+			4);
+
+		CommerceAddress billingCommerceAddress = addUserCommerceAddress(
+			groupId, userId);
+		CommerceAddress shippingCommerceAddress = addUserCommerceAddress(
+			groupId, userId);
+
+		commerceOrder.setBillingAddressId(
+			billingCommerceAddress.getCommerceAddressId());
+		commerceOrder.setShippingAddressId(
+			shippingCommerceAddress.getCommerceAddressId());
+
+		CommercePaymentMethodGroupRel commercePaymentMethodGroupRel =
+			addCommercePaymentMethodGroupRel(
+				commerceOrder.getCompanyId(), groupId, userId,
+				commerceChannel.getSiteGroupId());
+
+		commerceOrder.setCommercePaymentMethodKey(
+			commercePaymentMethodGroupRel.getEngineKey());
+
+		CommerceShippingMethod commerceShippingMethod =
+			addCommerceShippingMethod(groupId);
+
+		commerceOrder.setCommerceShippingMethodId(
+			commerceShippingMethod.getCommerceShippingMethodId());
+
+		CommerceShippingFixedOption commerceShippingFixedOption =
+			addCommerceShippingFixedOption(commerceShippingMethod);
+
+		commerceOrder.setShippingOptionName(
+			commerceShippingFixedOption.getName());
+
+		commerceOrder.setShippingAmount(
+			commerceShippingFixedOption.getAmount());
 	}
 
 	private static CommerceRegion _setUpRegion(

@@ -174,9 +174,6 @@ public class CommerceSubscriptionEntryPersistenceTest {
 		newCommerceSubscriptionEntry.setNextIterationDate(
 			RandomTestUtil.nextDate());
 
-		newCommerceSubscriptionEntry.setDeliverySubscriptionEnabled(
-			RandomTestUtil.randomBoolean());
-
 		newCommerceSubscriptionEntry.setDeliverySubscriptionLength(
 			RandomTestUtil.nextInt());
 
@@ -272,9 +269,6 @@ public class CommerceSubscriptionEntryPersistenceTest {
 				existingCommerceSubscriptionEntry.getNextIterationDate()),
 			Time.getShortTimestamp(
 				newCommerceSubscriptionEntry.getNextIterationDate()));
-		Assert.assertEquals(
-			existingCommerceSubscriptionEntry.isDeliverySubscriptionEnabled(),
-			newCommerceSubscriptionEntry.isDeliverySubscriptionEnabled());
 		Assert.assertEquals(
 			existingCommerceSubscriptionEntry.getDeliverySubscriptionLength(),
 			newCommerceSubscriptionEntry.getDeliverySubscriptionLength());
@@ -431,9 +425,8 @@ public class CommerceSubscriptionEntryPersistenceTest {
 			"subscriptionType", true, "currentCycle", true,
 			"maxSubscriptionCycles", true, "subscriptionStatus", true,
 			"lastIterationDate", true, "nextIterationDate", true,
-			"deliverySubscriptionEnabled", true, "deliverySubscriptionLength",
-			true, "deliverySubscriptionType", true,
-			"deliverySubscriptionTypeSettings", true,
+			"deliverySubscriptionLength", true, "deliverySubscriptionType",
+			true, "deliverySubscriptionTypeSettings", true,
 			"deliveryMaxSubscriptionCycles", true, "deliverySubscriptionStatus",
 			true, "deliveryLastIterationDate", true,
 			"deliveryNextIterationDate", true, "startDate", true);
@@ -784,9 +777,6 @@ public class CommerceSubscriptionEntryPersistenceTest {
 
 		commerceSubscriptionEntry.setNextIterationDate(
 			RandomTestUtil.nextDate());
-
-		commerceSubscriptionEntry.setDeliverySubscriptionEnabled(
-			RandomTestUtil.randomBoolean());
 
 		commerceSubscriptionEntry.setDeliverySubscriptionLength(
 			RandomTestUtil.nextInt());

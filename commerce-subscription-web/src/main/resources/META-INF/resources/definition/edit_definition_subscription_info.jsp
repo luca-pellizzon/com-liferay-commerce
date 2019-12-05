@@ -42,6 +42,11 @@ int subscriptionLength = BeanParamUtil.getInteger(cpDefinition, request, "subscr
 String subscriptionType = BeanParamUtil.getString(cpDefinition, request, "subscriptionType", defaultCPSubscriptionType);
 long maxSubscriptionCycles = BeanParamUtil.getLong(cpDefinition, request, "maxSubscriptionCycles");
 
+boolean orderSubscriptionEnabled = BeanParamUtil.getBoolean(cpDefinition, request, "orderSubscriptionEnabled", false);
+int orderSubscriptionLength = BeanParamUtil.getInteger(cpDefinition, request, "orderSubscriptionLength", 1);
+String orderSubscriptionType = BeanParamUtil.getString(cpDefinition, request, "orderSubscriptionType", defaultCPSubscriptionType);
+long orderMaxSubscriptionCycles = BeanParamUtil.getLong(cpDefinition, request, "orderMaxSubscriptionCycles");
+
 String defaultCPSubscriptionTypeLabel = StringPool.BLANK;
 
 CPSubscriptionType cpSubscriptionType = cpDefinitionSubscriptionInfoDisplayContext.getCPSubscriptionType(subscriptionType);
@@ -52,10 +57,16 @@ if (cpSubscriptionType != null) {
 
 CPSubscriptionTypeJSPContributor cpSubscriptionTypeJSPContributor = cpDefinitionSubscriptionInfoDisplayContext.getCPSubscriptionTypeJSPContributor(subscriptionType);
 
-boolean ending = false;
+boolean subscriptionEnding = false;
 
 if (maxSubscriptionCycles > 0) {
-	ending = true;
+	subscriptionEnding = true;
+}
+
+boolean orderSubscriptionEnding = false;
+
+if (orderMaxSubscriptionCycles > 0) {
+	orderSubscriptionEnding = true;
 }
 %>
 
@@ -106,11 +117,11 @@ if (maxSubscriptionCycles > 0) {
 
 				<div id="<portlet:namespace />neverEndsContainer">
 					<div class="never-ends-header">
-						<aui:input checked="<%= ending ? false : true %>" name="neverEnds" type="toggle-switch" />
+						<aui:input checked="<%= subscriptionEnding ? false : true %>" name="neverEnds" type="toggle-switch" />
 					</div>
 
 					<div class="never-ends-content">
-						<aui:input disabled="<%= ending ? false : true %>" helpMessage="max-subscription-cycles-help" label="end-after" name="maxSubscriptionCycles" suffix='<%= LanguageUtil.get(request, "cycles") %>' value="<%= String.valueOf(maxSubscriptionCycles) %>">
+						<aui:input disabled="<%= subscriptionEnding ? false : true %>" helpMessage="max-subscription-cycles-help" label="end-after" name="maxSubscriptionCycles" suffix='<%= LanguageUtil.get(request, "cycles") %>' value="<%= String.valueOf(maxSubscriptionCycles) %>">
 							<aui:validator name="digits" />
 
 							<aui:validator errorMessage='<%= LanguageUtil.format(request, "please-enter-a-value-greater-than-or-equal-to-x", 1) %>' name="custom">
@@ -124,6 +135,65 @@ if (maxSubscriptionCycles > 0) {
 									}
 
 									return false;
+								}
+							</aui:validator>
+						</aui:input>
+					</div>
+				</div>
+			</div>
+		</aui:fieldset>
+
+		<aui:fieldset>
+			<aui:input checked="<%= orderSubscriptionEnabled %>" label="enable-subscription" name="subscriptionEnabled" type="toggle-switch" value="<%= subscriptionEnabled %>" />
+
+			<div class="<%= orderSubscriptionEnabled ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />subscriptionOptions">
+				<aui:select name="subscriptionType" onChange='<%= renderResponse.getNamespace() + "selectSubscriptionType();" %>'>
+
+					<%
+						for (CPSubscriptionType curCPSubscriptionType : cpSubscriptionTypes) {
+					%>
+
+					<aui:option data-label="<%= curCPSubscriptionType.getLabel(locale) %>" label="<%= curCPSubscriptionType.getLabel(locale) %>" selected="<%= orderSubscriptionType.equals(curCPSubscriptionType.getName()) %>" value="<%= curCPSubscriptionType.getName() %>" />
+
+					<%
+						}
+					%>
+
+				</aui:select>
+
+				<%
+					if (cpSubscriptionTypeJSPContributor != null) {
+						cpSubscriptionTypeJSPContributor.render(cpDefinition, request, response);
+					}
+				%>
+
+				<div id="<portlet:namespace />cycleLengthContainer">
+					<aui:input name="subscriptionLength" suffix="<%= defaultCPSubscriptionTypeLabel %>" value="<%= String.valueOf(orderSubscriptionLength) %>">
+						<aui:validator name="digits" />
+						<aui:validator name="min">1</aui:validator>
+					</aui:input>
+				</div>
+
+				<div id="<portlet:namespace />neverEndsContainer">
+					<div class="never-ends-header">
+						<aui:input checked="<%= orderSubscriptionEnding ? false : true %>" name="neverEnds" type="toggle-switch" />
+					</div>
+
+					<div class="never-ends-content">
+						<aui:input disabled="<%= orderSubscriptionEnding ? false : true %>" helpMessage="max-subscription-cycles-help" label="end-after" name="maxSubscriptionCycles" suffix='<%= LanguageUtil.get(request, "cycles") %>' value="<%= String.valueOf(orderMaxSubscriptionCycles) %>">
+							<aui:validator name="digits" />
+
+							<aui:validator errorMessage='<%= LanguageUtil.format(request, "please-enter-a-value-greater-than-or-equal-to-x", 1) %>' name="custom">
+								function(val, fieldNode, ruleValue) {
+								if (AUI.$('#<portlet:namespace />neverEnds')[0].checked) {
+								return true;
+								}
+
+								if (parseInt(val, 10) > 0) {
+								return true;
+								}
+
+								return false;
 								}
 							</aui:validator>
 						</aui:input>
@@ -183,7 +253,7 @@ if (maxSubscriptionCycles > 0) {
 		{
 			animated: true,
 			content: '#<portlet:namespace />neverEndsContainer .never-ends-content',
-			expanded: <%= ending %>,
+			expanded: <%= subscriptionEnding %>,
 			header: '#<portlet:namespace />neverEndsContainer .never-ends-header',
 			on: {
 				animatingChange: function(event) {
@@ -194,6 +264,28 @@ if (maxSubscriptionCycles > 0) {
 					}
 					else {
 						A.one('#<portlet:namespace />maxSubscriptionCycles').attr('disabled', true);
+					}
+				}
+			}
+		}
+	);
+
+</aui:script><aui:script use="aui-toggler">
+	new A.Toggler(
+		{
+			animated: true,
+			content: '#<portlet:namespace />neverEndsContainer .never-ends-content',
+			expanded: <%= orderSubscriptionEnding %>,
+			header: '#<portlet:namespace />neverEndsContainer .never-ends-header',
+			on: {
+				animatingChange: function(event) {
+					var instance = this;
+
+					if (!instance.get('expanded')) {
+						A.one('#<portlet:namespace />orderMaxSubscriptionCycles').attr('disabled', false);
+					}
+					else {
+						A.one('#<portlet:namespace />orderMaxSubscriptionCycles').attr('disabled', true);
 					}
 				}
 			}

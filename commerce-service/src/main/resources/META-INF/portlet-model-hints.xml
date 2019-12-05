@@ -321,7 +321,6 @@
 		<field name="subscriptionStatus" type="int" />
 		<field name="lastIterationDate" type="Date" />
 		<field name="nextIterationDate" type="Date" />
-		<field name="deliverySubscriptionEnabled" type="boolean" />
 		<field name="deliverySubscriptionLength" type="int" />
 		<field name="deliverySubscriptionType" type="String" />
 		<field name="deliverySubscriptionTypeSettings" type="String" />

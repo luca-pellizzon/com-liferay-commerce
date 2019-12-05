@@ -368,28 +368,6 @@ public interface CommerceSubscriptionEntryModel
 	public void setNextIterationDate(Date nextIterationDate);
 
 	/**
-	 * Returns the delivery subscription enabled of this commerce subscription entry.
-	 *
-	 * @return the delivery subscription enabled of this commerce subscription entry
-	 */
-	public boolean getDeliverySubscriptionEnabled();
-
-	/**
-	 * Returns <code>true</code> if this commerce subscription entry is delivery subscription enabled.
-	 *
-	 * @return <code>true</code> if this commerce subscription entry is delivery subscription enabled; <code>false</code> otherwise
-	 */
-	public boolean isDeliverySubscriptionEnabled();
-
-	/**
-	 * Sets whether this commerce subscription entry is delivery subscription enabled.
-	 *
-	 * @param deliverySubscriptionEnabled the delivery subscription enabled of this commerce subscription entry
-	 */
-	public void setDeliverySubscriptionEnabled(
-		boolean deliverySubscriptionEnabled);
-
-	/**
 	 * Returns the delivery subscription length of this commerce subscription entry.
 	 *
 	 * @return the delivery subscription length of this commerce subscription entry
